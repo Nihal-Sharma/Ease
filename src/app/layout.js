@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         <header className="top-0 sticky">
           <Navbar/>
         </header>
-        <div>
+        <div className="min-h-screen ">
         {children}
         </div>
        

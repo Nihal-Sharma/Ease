@@ -11,14 +11,16 @@ import {
   CardHeader,
 } from "@nextui-org/react";
 import axios from "axios";
+import { useStore } from "../../Store/Store";
 
 const Page = ({}) => {
+  const url = useStore((state) => state.url);
   const [selected, setSelected] = React.useState("login");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const loginHandle = () => {
     axios
-      .post("http://localhost:3000/api/users", {
+      .post(`${url}/api/users`, {
         username: username,
         password: password,
       })
@@ -46,14 +48,18 @@ const Page = ({}) => {
                   placeholder="Enter your email"
                   type="email"
                   className=""
-                  onChange={(e)=>{setUsername(e.target.value)}}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                  }}
                 />
                 <Input
                   isRequired
                   label="Password"
                   placeholder="Enter your password"
                   type="password"
-                  onChange={(e)=>{setPassword(e.target.value)}}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
                 <p className="text-center text-small text-gray-500">
                   Need to create an account?{" "}

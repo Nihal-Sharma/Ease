@@ -31,5 +31,5 @@ export default function Home() {
         <button className="ext-white bg-gradient-to-r from-[#7E20D8]  to-[#913D44] hover:bg-gradient-to-br  shadow-lg shadow-pink-500/80 dark:shadow-lg dark:shadow-pink-500/30 font-medium rounded-lg text-sm px-7  py-2.5 text-center me-2 mb-2">Docs</button>
       </div>
     </div>
-  );
+  )
 }

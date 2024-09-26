@@ -18,9 +18,15 @@ const Page = ({}) => {
   const [selected, setSelected] = React.useState("login");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const handleSignup =()=>{
+    axios.post(`${url}/api/auth/signup` , {username , password}).then((result)=>{alert(result.data)})
+  }
+
+
   const loginHandle = () => {
     axios
-      .post(`${url}/api/users`, {
+      .post(`${url}/api/auth/login`, {
         username: username,
         password: password,
       })
@@ -116,6 +122,7 @@ const Page = ({}) => {
                   <Button
                     fullWidth
                     className=" font-bold text-white bg-gradient-to-br from-purple-500 to-pink-500"
+                    onClick={handleSignup}
                   >
                     Sign up
                   </Button>

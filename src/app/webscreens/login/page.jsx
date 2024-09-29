@@ -12,26 +12,35 @@ import {
 } from "@nextui-org/react";
 import axios from "axios";
 import { useStore } from "../../Store/Store";
+import local from "next/font/local";
+import { useRouter } from "next/navigation";
 
 const Page = ({}) => {
+  const router = useRouter();
   const url = useStore((state) => state.url);
+  const storedata = useStore((state)=> state.details)
+  const addDetails = useStore((state)=> state.addDetails)
   const [selected, setSelected] = React.useState("login");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
+  const token = localStorage.getItem("token")
   const handleSignup =()=>{
-    axios.post(`${url}/api/auth/signup` , {username , password}).then((result)=>{alert(result.data)})
+    axios.post(`${url}/api/auth/signup` , {token : token}).then((result)=>{console.log(result.data); })
   }
 
 
-  const loginHandle = () => {
+  const loginHandle =  async() => {
     axios
       .post(`${url}/api/auth/login`, {
         username: username,
         password: password,
       })
       .then((result) => {
-        alert(result.data);
+        addDetails(result.data.details) 
+        localStorage.setItem("token" , result.data.token)
+        alert("Matched");    
+        router.push("/webscreens/account")
+
       });
   };
   return (
@@ -132,6 +141,7 @@ const Page = ({}) => {
           </Tabs>
         </CardBody>
       </Card>
+      
     </div>
   );
 };

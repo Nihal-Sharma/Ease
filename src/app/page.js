@@ -1,8 +1,23 @@
 "use client"
 import Image from "next/image";
 import { TypeAnimation } from 'react-type-animation';
+import { useStore } from "./Store/Store";
+import { useEffect } from "react";
 
 export default function Home() {
+  const dataAvailable = useStore((state)=>(state.dataAvailable))
+  const details = useStore((state)=> state.details)
+  const token = localStorage.getItem("token")
+  useEffect(()=>{
+    if (dataAvailable ===true){
+      console.log("Data Already Exists")
+    }
+    else{
+      if(token){
+        console.log("request sent for details via token")
+      }
+    }
+  },[])
   return (
     <div className="p-8">
       <div className="text-6xl font-bold font-sans bg-gradient-to-r from-[#7E20D8]  to-[#913D44] inline-block text-transparent bg-clip-text mb-3 ">Eease Ai</div>
@@ -30,6 +45,9 @@ export default function Home() {
         <button className="ext-white bg-gradient-to-r from-[#7E20D8]  to-[#913D44] hover:bg-gradient-to-br  shadow-lg shadow-pink-500/80 dark:shadow-lg dark:shadow-pink-500/30 font-medium rounded-lg text-sm px-7 py-2.5 text-center me-2 mb-2">Try Ease</button>
         <button className="ext-white bg-gradient-to-r from-[#7E20D8]  to-[#913D44] hover:bg-gradient-to-br  shadow-lg shadow-pink-500/80 dark:shadow-lg dark:shadow-pink-500/30 font-medium rounded-lg text-sm px-7  py-2.5 text-center me-2 mb-2">Docs</button>
       </div>
+      {details.username}<br></br>
+      {details.uid}<br></br>
+      {details.email}
     </div>
   )
 }

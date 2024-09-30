@@ -4,7 +4,7 @@ const server_api = "https://ai-ease.vercel.app"
 
 
 export const useStore = create((set) => ({
-    url : server_api,
+    url : local_api,
     details : {},
     dataAvailable : false,
     count: 1,

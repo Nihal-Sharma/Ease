@@ -2,10 +2,11 @@
 import { useStore } from '@/app/Store/Store'
 import React from 'react'
 
-const page = () => {
+const Page = () => {
   const dataAvailable = useStore((state)=>(state.dataAvailable))
   const details = useStore((state)=> state.details)
   const token = localStorage.getItem("token")
+
   useEffect(()=>{
     if (dataAvailable ===true){
       console.log("Data Already Exists")
@@ -22,4 +23,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

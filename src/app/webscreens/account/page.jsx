@@ -1,5 +1,5 @@
 "use client";
-import { useStore } from '@/app/Store/Store'
+import { useStore } from '../../Store/Store'
 import React from 'react'
 
 const Page = () => {
